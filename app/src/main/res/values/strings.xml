@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">LogInWithList</string>
+
+    <!-- For LogIn validation -->
+    <string name="emailerror">Enter a valid email</string>
+    <string name="passworderror">Enter a valid password</string>
+
+</resources>
