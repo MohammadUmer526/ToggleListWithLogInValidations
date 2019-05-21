@@ -12,7 +12,6 @@ import android.widget.Toast;
 import com.example.loginwithlist.R;
 
 public class Registration extends AppCompatActivity{
-    private Button btn_Rgst;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +24,7 @@ public class Registration extends AppCompatActivity{
         final  EditText edt_Email = (EditText) findViewById(R.id.email);
         final  EditText edt_Phone = (EditText) findViewById(R.id.phone);
         final  EditText edt_Password = (EditText) findViewById(R.id.password);
-        btn_Rgst = (Button) findViewById(R.id.btn_register);
+        Button btn_Rgst = (Button) findViewById(R.id.btn_register);
 
         // validations for input credentials
         btn_Rgst.setOnClickListener(new View.OnClickListener() {

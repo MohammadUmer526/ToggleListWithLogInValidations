@@ -14,20 +14,17 @@ import com.example.loginwithlist.R;
 
 public class MainActivity extends AppCompatActivity{
 
-    private TextView frg_Pass, link_Regst;
-    private Button btn_lgnIn;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         //initialize the views
-        frg_Pass = (TextView) findViewById(R.id.edt_frgtPass);
-        link_Regst = (TextView) findViewById(R.id.txt_LinkRgst);
+        TextView frg_Pass = (TextView) findViewById(R.id.edt_frgtPass);
+        TextView link_Regst = (TextView) findViewById(R.id.txt_LinkRgst);
         final EditText edt_Email = (EditText) findViewById(R.id.edt_Email);
         final EditText edt_Pass = (EditText) findViewById(R.id.edt_Pass);
-        btn_lgnIn = (Button) findViewById(R.id.btnLogin);
+        Button btn_lgnIn = (Button) findViewById(R.id.btnLogin);
 
 
         //validations for input credentials
@@ -53,8 +50,8 @@ public class MainActivity extends AppCompatActivity{
                   edt_Pass.setError("Password is invalid");
                 }
                 if (email.matches(emailPattern) && password.matches(passPattern)){
-                    Intent rdrt_Rgst = new Intent(MainActivity.this, Registration.class);
-                    startActivity(rdrt_Rgst);
+                    Intent rdrt_Trnsct = new Intent(MainActivity.this, Transaction.class);
+                    startActivity(rdrt_Trnsct);
                 }
             }
         });
