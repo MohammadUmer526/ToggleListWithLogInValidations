@@ -9,21 +9,20 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.example.loginwithlist.R;
-import com.raywenderlich.android.validatetor.ValidateTor;
 
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity{
 
     private TextView frg_Pass, link_Regst;
     private Button btn_lgnIn;
-    private AwesomeValidation awesomeValidation;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //initialize the views
         frg_Pass = (TextView) findViewById(R.id.edt_frgtPass);
         link_Regst = (TextView) findViewById(R.id.txt_LinkRgst);
         final EditText edt_Email = (EditText) findViewById(R.id.edt_Email);
@@ -81,22 +80,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
     }
-
-        private void submitForm(){
-            if (awesomeValidation.validate()) {
-                Toast.makeText(this, "Validation Successful", Toast.LENGTH_LONG).show();
-
-                //process the data further
-            }
-
-        }
-
-
-    @Override
-    public void onClick(View view) {
-        if (view == btn_lgnIn) {
-            submitForm();
-        }
-    }
-
 }

@@ -24,7 +24,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginStart="74sp"
         android:layout_marginLeft="74sp"
-        android:layout_marginTop="159dp"
+        android:layout_marginTop="128dp"
         android:ems="10"
         android:gravity="center_horizontal"
         android:hint="Email"
@@ -39,11 +39,12 @@
         android:layout_centerHorizontal="true"
         android:layout_marginStart="74sp"
         android:layout_marginLeft="74sp"
-        android:layout_marginTop="54dp"
+        android:layout_marginTop="30dp"
         android:ems="10"
         android:gravity="center_horizontal"
         android:hint="Password"
         android:inputType="textPassword"
+        android:maxLength="10"
         tools:ignore="HardcodedText">
 
     </EditText>
@@ -56,7 +57,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginStart="74sp"
         android:layout_marginLeft="74sp"
-        android:layout_marginTop="37dp"
+        android:layout_marginTop="33dp"
         android:ems="10"
         android:gravity="right"
         android:text="Forget Password?"
