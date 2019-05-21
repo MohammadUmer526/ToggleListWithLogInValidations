@@ -4,5 +4,8 @@
     <!-- For LogIn validation -->
     <string name="emailerror">Enter a valid email</string>
     <string name="passworderror">Enter a valid password</string>
+    <string name="phone">Phone</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
 
 </resources>
