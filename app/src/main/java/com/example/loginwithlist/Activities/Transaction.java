@@ -1,27 +1,32 @@
 package com.example.loginwithlist.Activities;
 
+import android.annotation.SuppressLint;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import android.support.v7.widget.SearchView;
+import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
-import android.widget.SimpleAdapter;
 import android.widget.Switch;
-import android.widget.Toast;
 
 
 import com.example.loginwithlist.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class Transaction extends AppCompatActivity {
+
+    Switch tg1;
+
     //Array of countries
     String [] countries = new String[]{
 
@@ -142,6 +147,9 @@ public class Transaction extends AppCompatActivity {
             true
     } ;
 
+
+    @SuppressLint("ClickableViewAccessibility")
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -152,39 +160,9 @@ public class Transaction extends AppCompatActivity {
         if(savedInstanceState!=null){
             status = savedInstanceState.getBooleanArray("status");
         }
+        final ArrayList<HashMap<String, Object>> aList = new ArrayList<HashMap<String, Object>>();
 
-
-        final ListView lv_Countries = (ListView) findViewById(R.id.lv_Countries);
-        AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ListView l_View = (ListView) parent;
-
-                SimpleAdapter adapter = (SimpleAdapter) l_View.getAdapter();
-                HashMap hm = (HashMap) adapter.getItem(position);
-
-                RelativeLayout relativeLayout = (RelativeLayout) view;
-                Switch tg1 = (Switch) relativeLayout.getChildAt(1);
-
-                String strStatus = "" ;
-                if(tg1.isChecked()){
-                    tg1.setChecked(false);
-                    strStatus = "Off";
-                    status[position] = false;
-                }else{
-                    tg1.setChecked((true));
-                    strStatus = "On";
-                    status[position] = true;
-                }
-                Toast.makeText(getBaseContext(), (String) hm.get("txt") + " : " + strStatus,
-                        Toast.LENGTH_SHORT).show();
-            }
-        };
-        lv_Countries.setOnItemClickListener(itemClickListener);
-
-        // list which stores name of country and status
-        List<HashMap<String, Object>> aList = new ArrayList<HashMap<String, Object>>();
-        for(int i=0;i<10;i++){
+        for(int i=0;i<50;i++){
             HashMap<String, Object> hm = new HashMap<String,Object>();
             hm.put("txt", countries[i]);
             hm.put("stat",status[i]);
@@ -192,17 +170,69 @@ public class Transaction extends AppCompatActivity {
         }
 
 
+        final ListView lv_Countries = (ListView) findViewById(R.id.lv_Countries);
+       AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                final ListView l_View = (ListView) parent;
+
+                ArrayAdapter adapter = (ArrayAdapter) l_View.getAdapter();
+                final Switch tglAll = (Switch) findViewById(R.id.tgl_AllStatus);
+                RelativeLayout relativeLayout = (RelativeLayout) view;
+                tg1 = (Switch) relativeLayout.getChildAt(1);
+
+
+                String strStatus = "" ;
+                if(tg1.isChecked()){
+                    tg1.setChecked(false);
+                    strStatus = "Off";
+                    status[position] = false;
+                }else{
+                    tg1.setChecked(true);
+                    strStatus = "On";
+                    status[position] = true;
+                }
+        tglAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for(int i=0; i < l_View.getChildCount(); i++){
+                    RelativeLayout itemLayout = (RelativeLayout)lv_Countries.getChildAt(i);
+                    Switch cb = (Switch)itemLayout.findViewById(R.id.tgl_status);
+                    if(tglAll.isChecked()){
+                        cb.setChecked(true);
+                    }else {
+                        cb.setChecked(false);
+                    }
+
+
+                }
+            }
+        });
+
+
+
+//                Toast.makeText(getBaseContext(), (String) hm.get("txt") + " : " + strStatus,
+//                        Toast.LENGTH_SHORT).show();
+            }
+        };
+        lv_Countries.setOnItemClickListener(itemClickListener);
+
+        // list which stores name of country and status
+
+
+
+
+
         // Keys used in Hashmap
-        String[] from = {"txt","stat" };
+        final String[] from = {"txt","stat" };
 
         // Ids of views in listview_layout
-        int[] to = { R.id.txt_CountryName, R.id.tgl_status};
+        final int[] to = { R.id.txt_CountryName, R.id.tgl_status};
 
-        // Instantiating an adapter to store each items
-        // R.layout.listview_layout defines the layout of each item
-        final SimpleAdapter adapter = new SimpleAdapter(getBaseContext(), aList, R.layout.lv_layout, from, to);
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.lv_layout, R.id.txt_CountryName, countries);
+
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.lv_layout, R.id.txt_CountryName, countries);
         lv_Countries.setAdapter(adapter);
+
 
         final SearchView searchView = findViewById(R.id.search_view);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -210,7 +240,8 @@ public class Transaction extends AppCompatActivity {
             public boolean onQueryTextSubmit(String query) {
                 adapter.getFilter().filter(query);
                 searchView.clearFocus();
-                return true;
+                lv_Countries.setAdapter(adapter);
+                return false;
             }
 
             @Override
@@ -225,8 +256,6 @@ public class Transaction extends AppCompatActivity {
                 searchView.setIconified(false);
             }
         });
-
-
     }
 
     /** Saving the current state of the activity
@@ -237,10 +266,16 @@ public class Transaction extends AppCompatActivity {
         super.onSaveInstanceState(outState);
         outState.putBooleanArray("status", status);
 
-
     }
     /** Saving the current state of the activity
      * for configuration changes [ Portrait <=> Landscape ]
      */
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_main, menu);
+        return true;
+    }
 
 }

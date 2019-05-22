@@ -7,5 +7,8 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+    <style name="Color1SwitchStyle" parent="Theme.AppCompat.Light">
+        <item name="colorControlActivated">#00cc00</item>
+    </style>
 
 </resources>
