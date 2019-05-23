@@ -7,95 +7,10 @@
     android:background="@color/gray"
     tools:context=".Activities.MainActivity">
 
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="2dp"
-        android:src="@drawable/icon" />
 
-    <EditText
-        android:id="@+id/edt_Email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/logo"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="74sp"
-        android:layout_marginLeft="74sp"
-        android:layout_marginTop="128dp"
-        android:ems="10"
-        android:gravity="center_horizontal"
-        android:hint="Email"
-        android:inputType="textEmailAddress"
-        tools:ignore="Autofill,HardcodedText" />
-
-    <EditText
-        android:id="@+id/edt_Pass"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/edt_Email"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="74sp"
-        android:layout_marginLeft="74sp"
-        android:layout_marginTop="30dp"
-        android:ems="10"
-        android:gravity="center_horizontal"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:maxLength="10"
-        tools:ignore="HardcodedText">
-
-    </EditText>
-
-    <TextView
-        android:id="@+id/edt_frgtPass"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/edt_Pass"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="74sp"
-        android:layout_marginLeft="74sp"
-        android:layout_marginTop="33dp"
-        android:ems="10"
-        android:gravity="right"
-        android:text="Forget Password?"
-        android:textColor="#5f9ea0"
-        android:textStyle="bold"
-        tools:ignore="HardcodedText">
-
-    </TextView>
-
-    <Button
-        android:id="@+id/btnLogin"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/edt_frgtPass"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="74sp"
-        android:layout_marginLeft="74sp"
-        android:layout_marginTop="24dp"
-        android:background="#5f9ea0"
-        android:text="Login"
-        tools:ignore="HardcodedText" />
-
-    <TextView
-        android:id="@+id/txt_LinkRgst"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btnLogin"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="74sp"
-        android:layout_marginLeft="74sp"
-        android:layout_marginTop="32dp"
-        android:ems="10"
-        android:gravity="center_horizontal"
-        android:text="New To App? Register here"
-        android:textColor="#5f9ea0"
-        android:textStyle="bold"
-        tools:ignore="HardcodedText">
-
-    </TextView>
+    <FrameLayout
+    android:id="@+id/your_placeholder"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" />
 
 </RelativeLayout>
